@@ -1,0 +1,35 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/henrique/Dropbox/" . "APC_Paris/")
+ ("/home/henrique/" . "Dropbox/")
+ ("/" . "home/")
+ ("/home/" . "henrique/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/henrique/Dropbox/APC_Paris/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "to_do_list.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/henrique/.emacs.d/" (25091 64602 372345 982000) "recentf" "./" "ido.last~" ".git/" "ac-comphist.dat" "elpa/" "init.el" "henrique-theme.el" "#.gitignore#" "eshell/" "init.el~" "recentf~" "auto-save-list/" "../" "ido.last" "custom.el~")
+
+ ("/home/henrique/Dropbox/APC_Paris/" (25091 51553 368186 692000) "./" "Rico - Planilha de Controle de Gastos Pessoais.xlsx" "to_read/" "Viaggio_madalady/" "to_do_list.org~" "Workshops/" "Root/" "Application/" "../" "to_do_list.org" ".ipynb_checkpoints/")
+
+ ("/home/henrique/Dropbox/" (25091 36297 804000 467000) "assinatura_henrique_fundo_branco.png" "Linux Mint Changes.txt~" "motorctrl_V3/" "APC_Paris/" "HenriqueTextoMestrado/" "giveMeSPhe.C" ".dropbox" "./" "LabLep/" "Aprendendo ROOT/" "WhatsApp Chat with Esteban Paraguaio.txt" "Alter Bridge - Blackbird (2007) [Full Album].mp3" "Naruto Shippuden Openings 1-20 Full.mp3" "Arquivos enviados/" "assinatura_henrique.png" "ePSXe 1.9.25 Starter Pack/" "Clube do Valor/" "changemac.sh" "Carla Cattadori.vcf" ".dropbox.cache/" "fprompt_high_bin.root" "GCINIT00121239990IT2020000000027635.pdf" "suporte_cabos.stl" "outorga_moto.odt" "Manual_CC-USB_ver_1.pdf" "motorctrl_V2/" "Tema.odt" "Imprimir viagem e recibo – Dados da sua viagem – American Airlines.pdf" "root_cern_installation.txt" "outorga_moto.pdf" "CME20160905.png" "wls_carla/" "libflashplayer.so" "caixa_ps_giovanni.stl" "Unicamp/" "1d20180903122635p0216132114000.m4a" "../" "Linux Mint Changes.txt" "IR/" "caixa_ps_giovanni_tampa.stl" "SugestaoTema.pdf" "talks/" "GEFAN-MEETING-NEUTRINOAT2020/" "adc_read.C" "Tema.docx" "AtendimentoCHAT.txt~")
+
+ ("/home/" (25062 17455 56006 281000) "./" "henrique/" "../")
+
+ ("/home/henrique/" (25091 55082 772229 776000) ".bash_history" ".root_hist" ".bashrc~" "Templates/" ".dropbox/" "./" "Downloads/" ".bashrc" ".zoom/" ".gnupg/" ".rootlogon.C" ".config/" "Music/" ".cups/" "Desktop/" ".icons/" ".themes/" ".python_history" "snap/" "Videos/" ".nvidia-settings-rc" ".local/" ".pki/" ".mozilla/" "Pictures/" ".gitconfig" ".thunderbird/" ".ssh/" "Documents/" ".cat_installer/" ".sudo_as_admin_successful" "Dropbox/" "Public/" "#.bashrc#" ".profile" "../" ".gtkrc-2.0" ".bash_logout" ".cinnamon/" ".emacs~" ".emacs.d/" ".dropbox-dist/" ".backup_emacs" ".cache/" ".nv/")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

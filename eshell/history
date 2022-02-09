@@ -1,1 +1,17 @@
 which $SHELL
+ls
+git init
+git checkout
+git checkout master
+git status
+git add .
+git status
+git commit -m "My first commit for emacs stuffs"
+git branch -M main
+git status
+git checkout
+git checkout master
+git branch
+git remote add origin https://github.com/hvsouza/emacs_config.git
+git push -u origin main
+git status

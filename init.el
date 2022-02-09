@@ -58,7 +58,8 @@
 	 ("C-r" . swiper)
 	 ("C-c C-r" . ivy-resume)
 	 ("M-x" . counsel-M-x)
-	 ("C-x C-f" . councel-find-file))
+	 ("C-x C-f" . counsel-find-file)
+	 )
   :config
   (progn
     (ivy-mode 1)
@@ -67,6 +68,7 @@
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
 
+;; well.. auto-complete
 (use-package auto-complete
   :ensure t
   :init
@@ -74,6 +76,16 @@
     (ac-config-default)
     (global-auto-complete-mode t)
     ))
+
+;; best thing in emacs..
+(use-package nyan-mode
+  :ensure t
+  :init
+    (setq nyan-animate-nyancat t)
+  :config
+  (nyan-mode)
+  (nyan-toggle-wavy-trail)
+  )
 
 
 
@@ -91,7 +103,7 @@
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes '(tango-dark))
  '(package-selected-packages
-   '(auto-complete counsel swiper org-bullets which-key whick-key try zygospore projectile company use-package)))
+   '(nyan-mode auto-complete counsel swiper org-bullets which-key whick-key try zygospore projectile company use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
