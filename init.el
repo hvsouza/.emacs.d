@@ -1,4 +1,7 @@
 (setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -49,24 +52,35 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-display-style 'fancy))
+  (setq ivy-display-style 'fancy)
+  )
+
 
 ;; for searching
 (use-package swiper
   :ensure try
-  :bind (("C-s" . swiper)
+  :bind (("C-f" . swiper)
 	 ("C-r" . swiper)
+	 ("C-s" . swiper)
+	 ("C-x C-f" . counsel-find-file)
 	 ("C-c C-r" . ivy-resume)
 	 ("M-x" . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file)
 	 )
   :config
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
+    (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
+    ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    (setq ivy-sort-matches-functions-alist '((t . nil)
+                                         (ivy-switch-buffer . ivy-sort-function-buffer)
+                                         (counsel-find-file . ivy-sort-function-buffer)))
+
     ))
+
+  
 
 ;; well.. auto-complete
 (use-package auto-complete
@@ -126,9 +140,20 @@
   (yank)
   )
 
-;; (define-key c++-mode-map (kbd "C-d") nil)
-;; (global-unset-key (kbd "C-d"))
+
+(defun comment-or-uncomment-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+            (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)))
+
 (add-hook 'c++-mode-hook
-	  (lambda () (local-set-key (kbd "C-d") #'comment-line)))
-(global-set-key (kbd "C-d") 'comment-line)
+	  (lambda () (local-set-key (kbd "C-d") #'comment-or-uncomment-region-or-line)))
+(global-set-key (kbd "C-d") 'comment-or-uncomment-region-or-line)
+(global-set-key (kbd "C-S-d") 'comment-or-uncomment-region-or-line)
+
+
 (global-set-key (kbd "C-b") 'duplicate-line)
