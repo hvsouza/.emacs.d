@@ -29,8 +29,8 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; to show completion for buffers and files
-(setq indo-enable-flex-matching t)
-(setq indo-everywhere t)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
 (ido-mode 1)
 
 ;; make buffer C-x C-b much better
@@ -42,7 +42,10 @@
 ;; counsel for file
 (use-package counsel
   :ensure t
-  )
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
 
 ;; ivy for swiper (i dont really know)
 (use-package ivy
@@ -52,6 +55,7 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "%d/%d ")
   (setq ivy-display-style 'fancy)
   )
 
@@ -101,6 +105,12 @@
   (nyan-toggle-wavy-trail)
   )
 
+
+;; flycheck for completion and correction
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
 
 
 
