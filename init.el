@@ -39,53 +39,124 @@
 ;; allow to undo buffer stuffs... C-c left
 (winner-mode 1)
 
-;; counsel for file
-(use-package counsel
-  :ensure t
-  :bind
-  (("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)))
+;; ;; counsel for file -> From youtube tutorial
+;; (use-package counsel
+;;   :ensure t
+;;   :bind
+;;   (("M-y" . counsel-yank-pop)
+;;    :map ivy-minibuffer-map
+;;    ("M-y" . ivy-next-line)))
 
-;; ivy for swiper (i dont really know)
+;; ;; ivy for swiper (i dont really know) -> From youtube tutorial
+;; (use-package ivy
+;;   :ensure t
+;;   :diminish (ivy-mode)
+;;   :bind (("C-x b" . ivy-switch-buffer))
+;;   :config
+;;   (ivy-mode 1)
+;;   (setq ivy-use-virtual-buffers t)
+;;   (setq ivy-count-format "%d/%d ")
+;;   (setq ivy-display-style 'fancy)
+;;   )
+
+
+;; ;; for searching -> from youtube tutorail
+;; (use-package swiper
+;;   :ensure t
+;;   :bind (("C-r" . swiper-isearch)
+;; 	 ("C-s" . swiper-isearch)
+;; 	 ("C-f" . swiper-isearch)
+;; 	 ("C-x C-f" . counsel-find-file)
+;; 	 ("C-c C-r" . ivy-resume)
+;; 	 ("M-x" . counsel-M-x)
+;; 	 )
+;;   :config
+;;   (progn
+;;     (ivy-mode 1)
+;;     (setq ivy-use-virtual-buffers t)
+;;     (setq ivy-display-style 'fancy)
+;;     (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
+;;     (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+;;     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+;;     (setq ivy-sort-matches-functions-alist '((t . nil)
+;;                                          (ivy-switch-buffer . ivy-sort-function-buffer)
+;;                                          (counsel-find-file . ivy-sort-function-buffer)))
+
+;;     ))
+
+
+
+;; _______________ from https://panadestein.github.io/emacsd/
+
 (use-package ivy
   :ensure t
-  :diminish (ivy-mode)
-  :bind (("C-x b" . ivy-switch-buffer))
+  :diminish
+  :bind
+  (("C-s" . swiper-isearch))
+  (("C-f" . swiper-isearch))
   :config
-  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
-  (setq ivy-display-style 'fancy)
-  )
+  (ivy-mode 1)
+  ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial))
 
-
-;; for searching
 (use-package swiper
+  :ensure t)
+
+(use-package counsel
   :ensure t
-  :bind (("C-r" . swiper-isearch)
-	 ("C-s" . swiper-isearch)
-	 ("C-f" . swiper-isearch)
-	 ("C-x C-f" . counsel-find-file)
-	 ("C-c C-r" . ivy-resume)
-	 ("M-x" . counsel-M-x)
-	 )
+  :after ivy
+  :hook
+  (after-init . counsel-mode)
+  :config (counsel-mode)
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x b" . counsel-ibuffer)
+  ("C-M-l" . counsel-imenu)
+  ("C-x C-f" . counsel-find-file)
+  ("<f1> v" . counsel-describe-variable)
+  ("<f1> f" . counsel-descbinds-function))
+
+(use-package ivy-prescient
+  :ensure t
+  :after counsel
   :config
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-display-style 'fancy)
-    (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-    (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
-    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    (setq ivy-sort-matches-functions-alist '((t . nil)
-                                         (ivy-switch-buffer . ivy-sort-function-buffer)
-                                         (counsel-find-file . ivy-sort-function-buffer)))
+  (ivy-prescient-mode 1))
 
-    ))
+(use-package ivy-rich
+  :ensure t
+  :init
+  (ivy-rich-mode 1)
+  :after counsel
+  :config
+  (setq ivy-format-function #'ivy-format-function-line)
+  (setq ivy-configure
+        (plist-put ivy-rich-display-transformers-list
+                   'ivy-switch-buffer
+                   '(:columns
+                     ((ivy-rich-candidate (:width 40))
+                      (ivy-rich-switch-buffer-indicators
+                       (:width 4 :face error :align right))
+                      (ivy-rich-switch-buffer-major-mode
+                       (:width 12 :face warning))
+                      (ivy-rich-switch-buffer-project
+                       (:width 15 :face success))
+                      (ivy-rich-switch-buffer-path
+                       (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path
+                                            x (ivy-rich-minibuffer-width 0.3))))))))))
+
+(use-package all-the-icons-ivy
+  :ensure t
+  :demand t)
 
 
+;; __________________________
   
+;; undo for normal people
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode))
 
 ;; well.. auto-complete
 (use-package auto-complete
