@@ -62,10 +62,10 @@
 
 ;; for searching
 (use-package swiper
-  :ensure try
-  :bind (("C-f" . swiper)
-	 ("C-r" . swiper)
-	 ("C-s" . swiper)
+  :ensure t
+  :bind (("C-r" . swiper-isearch)
+	 ("C-s" . swiper-isearch)
+	 ("C-f" . swiper-isearch)
 	 ("C-x C-f" . counsel-find-file)
 	 ("C-c C-r" . ivy-resume)
 	 ("M-x" . counsel-M-x)
@@ -76,13 +76,14 @@
     (setq ivy-use-virtual-buffers t)
     (setq ivy-display-style 'fancy)
     (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-    ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+    (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (setq ivy-sort-matches-functions-alist '((t . nil)
                                          (ivy-switch-buffer . ivy-sort-function-buffer)
                                          (counsel-find-file . ivy-sort-function-buffer)))
 
     ))
+
 
   
 
@@ -140,6 +141,24 @@
 ;; (setq display-line-numbers-type 'relative)
 
 
+;; saving backup files in a fixed directory
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 5   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
+
+
+
+;; Making org-mode wrap line
+(defun org-line-wrap ()
+  (spacemacs/toggle-visual-line-navigation-on)
+  (setq-local word-wrap nil))
+
+(add-hook 'org-mode-hook 'org-line-wrap)
+
 (defun duplicate-line()
   (interactive)
   (move-beginning-of-line 1)
@@ -167,3 +186,4 @@
 
 
 (global-set-key (kbd "C-b") 'duplicate-line)
+
