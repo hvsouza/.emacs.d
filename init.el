@@ -114,8 +114,9 @@
   ("C-x b" . counsel-ibuffer)
   ("C-M-l" . counsel-imenu)
   ("C-x C-f" . counsel-find-file)
-  ("<f1> v" . counsel-describe-variable)
-  ("<f1> f" . counsel-descbinds-function))
+  ;; ("<f1> v" . counsel-describe-variable)
+  ;; ("<f1> f" . counsel-descbinds-function)
+  )
 
 (use-package ivy-prescient
   :ensure t
@@ -221,6 +222,9 @@
   kept-old-versions 5    ; and how many of the old
   )
 
+;; show parentheses stuff
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 
 ;; Making org-mode wrap line
