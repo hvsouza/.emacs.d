@@ -1,6 +1,5 @@
-(setq inhibit-startup-message t
-      cursor-type 'bar
-      )
+(setq inhibit-startup-message t)
+(setq-default cursor-type 'bar)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
