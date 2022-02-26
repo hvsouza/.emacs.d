@@ -1,4 +1,9 @@
 (setq inhibit-startup-message t)
+(setq-default cursor-type 'bar)
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 
@@ -114,8 +119,9 @@
   ("C-x b" . counsel-ibuffer)
   ("C-M-l" . counsel-imenu)
   ("C-x C-f" . counsel-find-file)
-  ("<f1> v" . counsel-describe-variable)
-  ("<f1> f" . counsel-descbinds-function))
+  ;; ("<f1> v" . counsel-describe-variable)
+  ;; ("<f1> f" . counsel-descbinds-function)
+  )
 
 (use-package ivy-prescient
   :ensure t
@@ -203,6 +209,9 @@
   kept-old-versions 5    ; and how many of the old
   )
 
+;; show parentheses stuff
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 
 ;; Making org-mode wrap line
