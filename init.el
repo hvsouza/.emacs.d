@@ -1,6 +1,8 @@
 (setq inhibit-startup-message t)
 (setq-default cursor-type 'bar)
 
+
+;; I've setup my custom file in another directory
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
@@ -249,3 +251,13 @@
 
 (global-set-key (kbd "C-b") 'duplicate-line)
 
+
+;; Loading code for display indentation lines
+(add-to-list 'load-path "~/.emacs.d/Highlight-Indentation-for-Emacs")
+(require 'highlight-indentation)
+(setq highlight-indentation-overlay-string "|")
+(highlight-indentation-mode t)
+(add-hook 'org-mode-hook 'highlight-indentation-mode)
+(add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
+(add-hook 'c++-mode-hook 'highlight-indentation-mode)
+(add-hook 'sh-mode-hook 'highlight-indentation-mode)
