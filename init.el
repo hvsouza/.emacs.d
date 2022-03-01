@@ -1,6 +1,8 @@
 (setq inhibit-startup-message t)
 (setq-default cursor-type 'bar)
 
+;; to remove tabs and replace by space
+(setq-default indent-tabs-mode nil)
 
 ;; I've setup my custom file in another directory
 (setq custom-file "~/.emacs.d/custom.el")
@@ -203,13 +205,17 @@
 
 
 ;; saving backup files in a fixed directory
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+(setq backup-directory-alist `(("." . "~/.emacs.d/backup"))
   backup-by-copying t    ; Don't delink hardlinks
   version-control t      ; Use version numbers on backups
   delete-old-versions t  ; Automatically delete excess backups
   kept-new-versions 5   ; how many of the newest versions to keep
   kept-old-versions 5    ; and how many of the old
   )
+
+;; saving auto-save in a fixed directory
+(setq auto-save-file-name-transforms
+      `((".*" "~/.emacs.d/auto-saves/" t)))
 
 ;; show parentheses stuff
 (show-paren-mode 1)
