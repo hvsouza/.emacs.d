@@ -231,8 +231,8 @@
   :config
   (require 'smartparens-config)
   :bind
-  ("C-x ," . sp-backward-sexp)
-  ("C-x ." . sp-forward-sexp)
+  ;; ("C-x ," . sp-backward-sexp)
+  ;; ("C-x ." . sp-forward-sexp)
   )
 (show-paren-mode t)
 
