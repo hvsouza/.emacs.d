@@ -1,5 +1,5 @@
-*
+/*
 
 !.gitignore
 !init.el
-!*/Highlight-Indentation-for-Emacs/*
+!Highlight-Indentation-for-Emacs/
