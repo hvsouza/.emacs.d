@@ -220,6 +220,21 @@
 ;; show parentheses stuff
 (show-paren-mode 1)
 (setq show-paren-delay 0)
+(setq blink-matching-paren 'show)
+;;(setq blink-matching-paren-distance nil)
+
+(use-package smartparens
+:ensure t
+  :hook (prog-mode . smartparens-mode)
+  :custom
+  (sp-escape-quotes-after-insert nil)
+  :config
+  (require 'smartparens-config)
+  :bind
+  ("C-x ," . sp-backward-sexp)
+  ("C-x ." . sp-forward-sexp)
+  )
+(show-paren-mode t)
 
 
 ;; Making org-mode wrap line
