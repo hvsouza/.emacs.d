@@ -43,52 +43,6 @@
 ;; allow to undo buffer stuffs... C-c left
 (winner-mode 1)
 
-;; ;; counsel for file -> From youtube tutorial
-;; (use-package counsel
-;;   :ensure t
-;;   :bind
-;;   (("M-y" . counsel-yank-pop)
-;;    :map ivy-minibuffer-map
-;;    ("M-y" . ivy-next-line)))
-
-;; ;; ivy for swiper (i dont really know) -> From youtube tutorial
-;; (use-package ivy
-;;   :ensure t
-;;   :diminish (ivy-mode)
-;;   :bind (("C-x b" . ivy-switch-buffer))
-;;   :config
-;;   (ivy-mode 1)
-;;   (setq ivy-use-virtual-buffers t)
-;;   (setq ivy-count-format "%d/%d ")
-;;   (setq ivy-display-style 'fancy)
-;;   )
-
-
-;; ;; for searching -> from youtube tutorail
-;; (use-package swiper
-;;   :ensure t
-;;   :bind (("C-r" . swiper-isearch)
-;; 	 ("C-s" . swiper-isearch)
-;; 	 ("C-f" . swiper-isearch)
-;; 	 ("C-x C-f" . counsel-find-file)
-;; 	 ("C-c C-r" . ivy-resume)
-;; 	 ("M-x" . counsel-M-x)
-;; 	 )
-;;   :config
-;;   (progn
-;;     (ivy-mode 1)
-;;     (setq ivy-use-virtual-buffers t)
-;;     (setq ivy-display-style 'fancy)
-;;     (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-;;     (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
-;;     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-;;     (setq ivy-sort-matches-functions-alist '((t . nil)
-;;                                          (ivy-switch-buffer . ivy-sort-function-buffer)
-;;                                          (counsel-find-file . ivy-sort-function-buffer)))
-
-;;     ))
-
-
 
 ;; _______________ from https://panadestein.github.io/emacsd/
 
