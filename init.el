@@ -31,11 +31,6 @@
   :ensure t
   :config (which-key-mode))
 
-;; Org-mode stuff
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; to show completion for buffers and files
 (setq ido-enable-flex-matching t)
@@ -195,7 +190,8 @@
   (global-flycheck-mode t))
 
 
-
+;; For line to fit in the window
+(setq global-visual-line-mode t)
 
 
 
@@ -237,10 +233,16 @@
 (show-paren-mode t)
 
 
+;; Org-mode stuff
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 ;; Making org-mode wrap line
 (defun org-line-wrap ()
   (spacemacs/toggle-visual-line-navigation-on)
-  (setq-local word-wrap nil))
+  (setq-local word-wrap t))
 
 (add-hook 'org-mode-hook 'org-line-wrap)
 
