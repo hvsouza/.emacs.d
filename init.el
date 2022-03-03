@@ -45,7 +45,6 @@
 
 
 ;; _______________ from https://panadestein.github.io/emacsd/
-
 (use-package ivy
   :ensure t
   :diminish
@@ -56,7 +55,8 @@
   (setq ivy-use-virtual-buffers t)
   (ivy-mode 1)
   ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial))
+  ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+  )
 
 (use-package swiper
   :ensure t)
@@ -108,9 +108,10 @@
   :ensure t
   :demand t)
 
-
 ;; __________________________
-  
+
+
+
 ;; undo for normal people
 (use-package undo-tree
   :ensure t
@@ -147,7 +148,12 @@
 ;; For line to fit in the window
 (setq global-visual-line-mode t)
 
-
+;; Frame navigation
+(mapc '(lambda (binding)
+         (let ((key (car binding))
+               (command (cadr binding)))
+           (global-set-key (kbd key) command)))
+      '(("C-'" other-window)))
 
 ;; Line numbering
 (global-display-line-numbers-mode)
