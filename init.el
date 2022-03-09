@@ -55,7 +55,7 @@
   (setq ivy-use-virtual-buffers t)
   (ivy-mode 1)
   ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-alt-done)
-  ;; (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+  (define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
   )
 
 (use-package swiper
@@ -187,6 +187,7 @@
   :config
   (require 'smartparens-config)
   :bind
+  ;; set as C-M-f or b 
   ;; ("C-x ," . sp-backward-sexp)
   ;; ("C-x ." . sp-forward-sexp)
   )
@@ -199,12 +200,13 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;; Making org-mode wrap line
-(defun org-line-wrap ()
-  (spacemacs/toggle-visual-line-navigation-on)
-  (setq-local word-wrap t))
+;; ;; Making org-mode wrap line
+;; (defun org-line-wrap ()
+;;   (spacemacs/toggle-visual-line-navigation-on)
+;;   (setq-local word-wrap t))
 
-(add-hook 'org-mode-hook 'org-line-wrap)
+;; (add-hook 'org-mode-hook 'org-line-wrap)
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 (defun duplicate-line()
   (interactive)
