@@ -11,6 +11,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 
+;; overwrite selected text
+;; (delete-selection-mode t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
