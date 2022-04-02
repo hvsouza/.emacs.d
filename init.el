@@ -120,14 +120,20 @@
   :init
   (global-undo-tree-mode))
 
+
+(use-package fuzzy
+  :ensure t
+  :config
+  (setq ac-fuzzy-enable 1))
 ;; well.. auto-complete
 (use-package auto-complete
   :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
+  :demand
+  :config
+  (ac-config-default)
+  (ac-flyspell-workaround)
+  (global-auto-complete-mode t)
+  )
 
 ;; best thing in emacs..
 (use-package nyan-mode
