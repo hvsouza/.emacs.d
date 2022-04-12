@@ -1,6 +1,9 @@
 (setq inhibit-startup-message t)
 (setq-default cursor-type 'bar)
 
+(load "server")
+(unless (server-running-p) (server-start))
+
 ;; to remove tabs and replace by space
 (setq-default indent-tabs-mode nil)
 
@@ -120,20 +123,40 @@
   :init
   (global-undo-tree-mode))
 
+;; (use-package company
+;;   :init
+;;   (setq company-idle-delay nil  ; avoid auto completion popup, use TAB
+;;                                 ; to show it
+;;         company-async-timeout 15        ; completion may be slow
+;;         company-tooltip-align-annotations t)
+;;   :hook (after-init . global-company-mode)
+;;   :bind
+;;   (:map prog-mode-map
+;;         ("C-i" . company-indent-or-complete-common)
+;;         ("C-M-i" . counsel-company)))
 
-(use-package fuzzy
-  :ensure t
-  :config
-  (setq ac-fuzzy-enable 1))
-;; well.. auto-complete
+
+;; (use-package fuzzy
+;;   :ensure t
+;;   :config
+;;   (setq ac-fuzzy-enable 1))
+
+;; ;; well.. auto-complete
 (use-package auto-complete
   :ensure t
-  :demand
-  :config
-  (ac-config-default)
-  (ac-flyspell-workaround)
-  (global-auto-complete-mode t)
-  )
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)))
+
+;; (use-package auto-complete
+;;   :ensure t
+;;   :demand
+;;   :config
+;;   (ac-config-default)
+;;   (ac-flyspell-workaround)
+;;   (global-auto-complete-mode t)
+;;   )
 
 ;; best thing in emacs..
 (use-package nyan-mode
@@ -196,11 +219,16 @@
   (require 'smartparens-config)
   :bind
   ;; set as C-M-f or b 
-  ;; ("C-x ," . sp-backward-sexp)
-  ;; ("C-x ." . sp-forward-sexp)
+  ("C-M-b" . sp-backward-sexp)
+  ("C-M-f" . sp-forward-sexp)
+  ("C-M-(" . sp-rewrap-sexp)
+  ("C-M-)" . sp-splice-sexp)
   )
 (show-paren-mode t)
 
+;; package to see the freekeys
+(use-package free-keys
+  :ensure t)
 
 ;; Org-mode stuff
 (use-package org-bullets
@@ -254,3 +282,8 @@
 (add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
 (add-hook 'c++-mode-hook 'highlight-indentation-mode)
 (add-hook 'sh-mode-hook 'highlight-indentation-mode)
+
+
+
+
+
