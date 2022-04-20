@@ -226,6 +226,15 @@
   )
 (show-paren-mode t)
 
+
+(use-package beacon
+  :ensure t)
+(beacon-mode 1)
+
+;; (use-package minimap
+;;   :ensure t)
+;; (minimap-mode 1)
+
 ;; package to see the freekeys
 (use-package free-keys
   :ensure t)
