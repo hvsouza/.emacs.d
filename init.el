@@ -22,6 +22,7 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
+(package-refresh-contents)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -294,5 +295,10 @@
 
 
 
+;; Download Evil
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
 
-
+;; Enable Evil
+(require 'evil)
+(evil-mode 1)
