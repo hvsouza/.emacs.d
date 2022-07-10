@@ -246,6 +246,14 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+;; Org mode table of content
+(use-package org-make-toc
+  :ensure t)
+
+;; Org-mode export issue
+(setq org-export-with-broken-links 'mark)
+
+
 ;; ;; Making org-mode wrap line
 ;; (defun org-line-wrap ()
 ;;   (spacemacs/toggle-visual-line-navigation-on)
@@ -295,10 +303,10 @@
 
 
 
-;; Download Evil
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
+;; ;; Download Evil
+;; (unless (package-installed-p 'evil)
+;;   (package-install 'evil))
 
-;; Enable Evil
-(require 'evil)
-(evil-mode 1)
+;; ;; Enable Evil
+;; (require 'evil)
+;; (evil-mode nil)
