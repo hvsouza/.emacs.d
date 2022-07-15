@@ -3,5 +3,3 @@
 !.gitignore
 !init.el
 !Highlight-Indentation-for-Emacs/
-!backup
-!auto-saves
