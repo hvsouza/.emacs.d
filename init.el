@@ -28,6 +28,20 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+
+;; ;; Download Evil
+;; (unless (package-installed-p 'evil)
+;;   (package-install 'evil))
+
+;; ;; Enable Evil
+;; (require 'evil)
+;; (evil-mode nil)
+
+(use-package evil
+  :ensure t)
+(evil-mode nil)
+
+
 ;; to try packages
 (use-package try
   :ensure t)
@@ -117,12 +131,6 @@
 ;; __________________________
 
 
-
-;; undo for normal people
-(use-package undo-tree
-  :ensure t
-  :init
-  (global-undo-tree-mode))
 
 ;; (use-package company
 ;;   :init
@@ -302,11 +310,16 @@
 (add-hook 'sh-mode-hook 'highlight-indentation-mode)
 
 
+;; ;; undo for normal people
+;; (use-package undo-tree
+;;   :ensure t
+;;   :init
+;;   (global-undo-tree-mode))
 
-;; ;; Download Evil
-;; (unless (package-installed-p 'evil)
-;;   (package-install 'evil))
-
-;; ;; Enable Evil
-;; (require 'evil)
-;; (evil-mode nil)
+(use-package undo-tree
+  :ensure t
+  :after evil
+  :diminish
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-undo-tree-mode 1))
