@@ -1,0 +1,37 @@
+#define memorydepth 5000
+#include "/home/henrique/Dropbox/APC_Paris/Root/cold_box_analysis/class/MYCODES.h"
+
+
+void wiener_deconvolution(){
+
+  TFile *fsphe = new TFile("sphe_waveforms_Ch1.root","READ");
+  TGraph *gsphe = (TGraph*)fsphe->Get("mean_ch1");
+  
+  TH1D *hsphe = new TH1D("hsphe","hsphe",memorydepth,0,4*memorydepth);
+  TH1D *hsignal = new TH1D("hsignal","hsignal",memorydepth,0,4*memorydepth);
+  TH1D *hres = new TH1D("hres","hres",memorydepth,0,4*memorydepth);
+
+  WIENER wpe("wpe");
+  WIENER wsignal("wsignal");
+  WIENER wdec("wdec");
+  WIENER wnoise("wnoise");
+  WIENER wfilter("wfilter");
+
+  Bool_t startfilling = false; // to avoid the first signal oscillation
+  for(Int_t i=0; i<memorydepth; i++){
+    if(i*4>200 && *(gsphe->GetY()+i)>=0){
+      startfilling = true;
+    }
+    if(startfilling)
+      hsphe->SetBinContent(i+1,*(gsphe->GetY()+i)); 
+    // hsphe->SetBinContent(i+1,func_fit->Eval(i*4));
+  }
+
+  wnoise.build_noise(2,0);
+  wpe.fft(hsphe);
+  wfilter.wienerGenFilter(wpe,wnoise,wsignal);
+
+}
+ 
+
+

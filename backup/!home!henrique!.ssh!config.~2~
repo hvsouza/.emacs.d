@@ -1,0 +1,9 @@
+Host dunegpvm03
+  HostName dunegpvm03.fnal.gov
+  User hsouza
+  ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+  LocalForward 5901 localhost:5933

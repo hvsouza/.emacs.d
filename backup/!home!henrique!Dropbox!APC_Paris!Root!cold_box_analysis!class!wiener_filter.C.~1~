@@ -1,0 +1,12 @@
+#include "MYCODES.h"
+
+
+class WIENER{
+public:
+
+  // creates filter from source s and reference d (such as noise)
+  void create_filter(vector<Double_t> &s, vector<Double_t> d){
+    
+  }
+  
+};

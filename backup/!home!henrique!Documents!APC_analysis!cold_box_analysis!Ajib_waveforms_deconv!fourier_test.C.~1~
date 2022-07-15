@@ -1,0 +1,48 @@
+#define memorydepth 2500
+#include "/home/henrique/Dropbox/APC_Paris/Root/cold_box_analysis/class/MYCODES.h"
+
+void fourier_test(){
+  WIENER wf("wn");
+  WIENER wled("led");
+  WIENER wpe("pe");
+  WIENER wres("res");
+  
+  wf.frequency = 250;
+  wf.step = 4;
+  TH1D* hnoise = new TH1D("hnoise","hnoise",memorydepth,0,memorydepth*wf.step);
+  for(Int_t i = 0; i< memorydepth; i++){
+    hnoise->SetBinContent(i+1,gRandom->Gaus(0,20));
+  }
+  wf.fft(hnoise);
+
+  TFile *f = new TFile("led_response.root","READ");
+  TH1D *hled = (TH1D*)f->Get("averaged_led");
+
+  TFile *f2 = new TFile("few_pe_response.root","READ");
+  TH1D *hpe = (TH1D*)f2->Get("averaged_few_pe");
+
+  
+  wled.fft(hled);
+  wpe.fft(hpe);
+
+  TCanvas *cfft = new TCanvas();
+  wled.hfft->Draw();
+  wpe.hfft->Draw("SAME");
+
+
+  wres.deconvolve(wled,wpe,90);
+  wres.shift_waveform(0,1200)
+
+  TCanvas *cres = new TCanvas();
+  wres.hwvf->Draw("hist");
+
+  cfft->cd();
+  wres.hfft->Draw("SAME");
+
+
+  
+
+
+
+  
+}

@@ -1,0 +1,9 @@
+Host dunegpvm06
+  HostName dunegpvm06.fnal.gov
+  User dbrailsf
+  ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+  LocalForward 5901 localhost:5922

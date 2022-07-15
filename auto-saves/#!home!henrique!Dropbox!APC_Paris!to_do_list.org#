@@ -1,0 +1,63 @@
+#+STARTUP: showall hidestars
+
+* TODO 
+
+
+*** DONE Edit paper and submit
+
+*** DONE Write the email for the seminar
+
+*** TODO Reply Melissa 
+
+*** TODO Call fermilab
+
+** LArSoft
+   - Understand PD simulation file
+   - Make sync between larsoft and data for CRT
+
+** SuperCell
+   - Finish Weiner-like filter. I can use the noise from run 99 (20220201). 
+   - (w or w/o the filter) Make the convolution in each waveform
+   - Apply filter to the fft in the waveform bases.
+
+   - Update: actually Wiener filter is on the way. I need to check now about smaller waveforms. What if I fill with zeros? My solution was decreasing the FFT resolution. Let's see how it goes.. 
+
+   - note: noise spectrum analyzed without filter, resulting std dev = 6.7 
+
+
+** Coldbox 
+   - June data:
+     + [ ] Signal from Ch3 and Ch4 (MiniArapuca A4ch1 and A1ch2) have a weird shape and noise is present.
+     + [ ] Both cathode on and off showed this problem.
+       + Example Run2 (off) 91 and 92
+       + Example Run2 (on) 91 and 92
+     + [ ] Ch3 example of high dark count: events 68, 69)
+
+   - CRP had grounding problems in april. -> Ask Sabrina if we can have a special ground here
+   - In the membrane it was A6 (ACR1) and the other is "good"
+   - SiPMs are alive at warm
+   - No signal because pof output was 3 V (OpAmp dead af)
+   - Black fiber 90 mV, 30 mV red (broken)
+   - Gray fiber mV, yellow fiber 
+   - Grouding of SiPMs and Tx 
+
+   - Finding out the dark count problem. Puting the sipm and board separted. Check PMT option.
+** Analog Readout
+   - simulations of rise time was about 22 ns (questions about input)
+   - measurements show
+
+** Personal
+
+** Linearity
+  - Jean Pierre 
+
+** CERN Mission
+
+** DONE Terminate FEEEEEEEE
+
+   
+* Things to get done
+  - Now saving raw
+    - before: ALL 9.4 GB, LED  2.8 GB
+    - After: ALL LED 7.6 GB
+

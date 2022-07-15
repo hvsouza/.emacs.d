@@ -1,0 +1,95 @@
+#!/bin/bash
+
+INSTALLPATH=Installation
+PreInstall=PreInstallThis
+SOURCEFILES=installation_files
+ROOTPATH=$( pwd )
+
+echo "The following command will be executed:"
+echo "sudo rm -r $INSTALLPATH"
+read -p "Are you sure (y/n)? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    return
+fi
+
+sudo rm -r $INSTALLPATH 
+mkdir -p $INSTALLPATH/$PreInstall
+
+cd $ROOTPATH/$SOURCEFILES
+
+tar -C $ROOTPATH/$INSTALLPATH/$PreInstall -xvf $( ls CAENComm* | grep -e ".tgz" -e ".tar.gz")
+tar -C $ROOTPATH/$INSTALLPATH/$PreInstall -xvf $( ls CAENVMELib* | grep -e ".tgz" -e ".tar.gz")
+tar -C $ROOTPATH/$INSTALLPATH/$PreInstall -xvf $( ls CAENUSB* | grep -e ".tgz" -e ".tar.gz")
+tar -C $ROOTPATH/$INSTALLPATH -xvf $( ls CAENUpgrader* | grep -e ".tgz" -e ".tar.gz")
+tar -C $ROOTPATH/$INSTALLPATH -xvf $( ls CAENDigitizer* | grep -e ".tgz" -e ".tar.gz")
+tar -C $ROOTPATH/ -xvf $( ls wavedump* | grep -e ".tgz" -e ".tar.gz")
+
+#installing requirements
+echo ""
+echo "Installing CAENVMELib"
+cd $ROOTPATH/$INSTALLPATH/$PreInstall
+cd $( ls | grep CAENVMELib* )/lib
+sudo bash install_x64
+
+echo "CAENVMELib hopefully installed, check for errors"
+echo ""
+sleep 1
+echo "Installing CAENComm"
+cd ../../
+cd $( ls | grep CAENComm* )/lib
+sudo bash install_x64
+
+
+echo "CAENComm hopefully installed, check for errors"
+echo ""
+sleep 1
+echo "Installing CAENUSB"
+cd ../../
+cd $( ls | grep CAENUSB* )
+make
+sudo make install
+
+echo "CAENUSB hopefully installed, check for errors"
+echo ""
+sleep 1
+echo "Installing CAENDigitizer"
+cd $ROOTPATH/$INSTALLPATH
+cd $( ls | grep CAENDigitizer* )
+sudo bash install_64
+
+echo "CAENDigitizer hopefully installed, check for errors"
+echo ""
+sleep 1
+echo "Installing CAENUpgrader"
+cd $ROOTPATH/$INSTALLPATH
+cd $( ls | grep CAENUpgrader* )
+./configure
+sudo make
+sudo make install
+
+
+echo "CAENUpgrader hopefully installed, check for errors"
+echo ""
+sleep 1
+echo "Installing Wavedump"
+cd $ROOTPATH
+cd $( ls | grep wavedump* )
+cd src
+#replacing the .c file with my custom one
+cp $ROOTPATH/$SOURCEFILES/WaveDump.c .
+cd ..
+
+echo "Installing gnuplot"
+sudo apt install gnuplot
+
+./configure
+make
+sudo make install
+
+mkdir -p ~/Desktop/WaveDumpData
+cp $ROOTPATH/$SOURCEFILES/{WaveDumpExe.sh,move_files.sh} ~/Desktop/WaveDumpData/
+
+
+cd $ROOTPATH

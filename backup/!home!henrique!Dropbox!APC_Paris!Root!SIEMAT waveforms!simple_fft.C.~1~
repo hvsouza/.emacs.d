@@ -1,0 +1,10 @@
+#define memorydepth 5000
+#include "/home/henrique/Dropbox/Unicamp/Doutorado/Root/Programs/italy/ADC_LAr_SuperCell/class/MYCODES.h"
+
+void simple_fft(){
+
+  TFile *fsphe = new TFile("SPE_HPK_AW.root","READ");
+  TH1D *hsphe = (TH1D*)fsphe->Get("Run3_ch0_ADC0_0V_ScintProfFirstSignalBin_17_");
+
+  hsphe->Draw();
+}

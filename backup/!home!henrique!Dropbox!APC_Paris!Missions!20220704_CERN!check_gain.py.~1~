@@ -1,0 +1,10 @@
+
+ R1=560. #twd feedback
+
+ R2=514. #R6+R7-going to gnd
+
+ R3=2260
+
+ R4=R3
+
+ print("Voff = ",2.5*(1-(R2/R1)*(R1+R3)/(R2+R4)))

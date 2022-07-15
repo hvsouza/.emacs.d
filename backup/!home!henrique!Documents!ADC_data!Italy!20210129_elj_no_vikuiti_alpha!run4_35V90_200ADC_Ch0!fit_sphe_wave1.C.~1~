@@ -1,0 +1,27 @@
+#include "/home/lableptons/Dropbox/Unicamp/Doutorado/Root/Programs/italy/ADC_LAr_tests/class/MYCODES.h"
+
+void fit_sphe_wave1(){
+    
+    Calibration Cal;
+    
+    Cal.dtime = 4; // steps (ADC's MS/s, 500 MS/s = 2 ns steps)
+    
+    Cal.rebin = 4;
+    
+    Cal.n_peaks = 3;
+    Cal.peak0 = 0.05;
+    Cal.mean0 = 100;
+    Cal.sigma0 = 100;
+    
+    Cal.peak1 = 0.1;
+    Cal.mean1 = 1800;
+    Cal.sigma1 = 200;
+    
+    Cal.startpoint = 0.015;
+        
+    Cal.xmin = -10000;
+    Cal.xmax = 80000;
+    
+    Cal.rootFile = "sphe_histograms_darkCount_Ch1.root";
+    Cal.fit_sphe_wave("wave_35V90_200ADC_1");    
+}

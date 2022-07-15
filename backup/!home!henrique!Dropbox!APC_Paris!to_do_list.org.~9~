@@ -1,0 +1,59 @@
+#+STARTUP: showall hidestars
+
+* TODO
+*** DONE Register to workshop
+    - Send email to they and Beatrice
+*** Tax stuff.. 
+*** Practice TALK !!! 
+*** 
+
+** LArSoft
+   - Understand PD simulation file
+   - Make sync between larsoft and data for CRT
+
+** SuperCell
+   - Finish Weiner-like filter. I can use the noise from run 99 (20220201). 
+   - (w or w/o the filter) Make the convolution in each waveform
+   - Apply filter to the fft in the waveform bases.
+
+   - Update: actually Wiener filter is on the way. I need to check now about smaller waveforms. What if I fill with zeros? My solution was decreasing the FFT resolution. Let's see how it goes.. 
+
+   - note: noise spectrum analyzed without filter, resulting std dev = 6.7 
+
+
+** Coldbox 
+   - Confirmed that s.p.e. was correct
+   - Conclusions about peak finder and baseline:
+     fft seems pretty good to evaluate baseline (it needs also to avoid peaks... so, lets see)
+     the derivative with moving average is great... one need to optmize the parameters though... 
+
+** Analog Readout
+   - simulations of rise time was about 22 ns (questions about input)
+   - measurements show
+
+** Personal
+
+** Linearity
+  - Jean Pierre 
+
+** CERN Mission
+
+** Terminate FEEEEEEEE
+
+
+* Today [2/4] :
+  + [-] Make a data acquisition plan:
+    + [X] First test, verify if acquision is done as OR or AND
+    + [X] Remember to check timestamp -> Set LED at a known frequency (if possible)
+    + [X] Data with LED from 3 to 30 V
+    + [X] Cosmic data taking, long statistic (check trigger how it works)
+    + [ ] Any CRT data? For CRT, we need to change wavedump !
+    + [ ] -> Talk with Bill: Decrease bias so we have no signal. Take noise run 
+    + [X] Check if we need again to turn everything off again. 
+
+
+  + [X] Wiener filter: check why there is two peaks (make small gaussian peaks)
+    + It was the the align of the pulses
+  + [X] Read article, send it to collab.
+  + [ ] 
+
